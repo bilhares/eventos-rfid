@@ -16,9 +16,15 @@ public class UsuarioResource {
 	@Autowired
 	UsuarioController usuController;
 
+	// loga no sistema
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public boolean logar(@RequestBody Usuario user) {
 		return usuController.authenticate(user);
 	}
 
+	// Ingressa o usuario em um evento
+	@RequestMapping(value = "/usuario/ingressar", method = RequestMethod.POST)
+	public boolean ingressar(@RequestBody Usuario user) {
+		return usuController.authenticate(user);
+	}
 }
