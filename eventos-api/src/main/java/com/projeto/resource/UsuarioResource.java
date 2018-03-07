@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto.controller.UsuarioController;
+import com.projeto.model.Evento;
+import com.projeto.model.IngressoUsuario;
 import com.projeto.model.Usuario;
 
 @RestController
@@ -18,13 +20,19 @@ public class UsuarioResource {
 
 	// loga no sistema
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public boolean logar(@RequestBody Usuario user) {
+	public Usuario logar(@RequestBody Usuario user) {
 		return usuController.authenticate(user);
+	}
+
+	// cadastra user
+	@RequestMapping(value = "/usuario/cadastrar", method = RequestMethod.POST)
+	public boolean cadastrar(@RequestBody Usuario user) {
+		return usuController.cadastrar(user);
 	}
 
 	// Ingressa o usuario em um evento
 	@RequestMapping(value = "/usuario/ingressar", method = RequestMethod.POST)
-	public boolean ingressar(@RequestBody Usuario user) {
-		return usuController.authenticate(user);
+	public boolean ingressar(@RequestBody IngressoUsuario ingresso) {
+		return usuController.ingressar(ingresso);
 	}
 }

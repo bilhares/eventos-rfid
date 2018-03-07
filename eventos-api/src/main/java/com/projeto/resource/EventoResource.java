@@ -1,30 +1,41 @@
 package com.projeto.resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.controller.EventosController;
 import com.projeto.model.Evento;
 import com.projeto.model.Usuario;
 
 @RestController
 @RequestMapping("/api")
 public class EventoResource {
+	@Autowired
+	EventosController evControl;
 
+	//localhost:8081/api/eventos?size=1&page=0
+	
 	// retorna uma lista de eventos
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
-	public void eventos() {
+	public Page<Evento> eventos(Pageable page) {
+		return evControl.getEventos(page);
 	}
 
 	// cadastra um novo evento
 	@RequestMapping(value = "/eventos", method = RequestMethod.POST)
 	public void eventos(@RequestBody Evento evento) {
+		evControl.saveEventp(evento);
 	}
 
 	// retorna uma lista de eventos relacionados com um user especifico
 	@RequestMapping(value = "/eventos/user", method = RequestMethod.POST)
 	public void eventosUsuarios(Usuario user) {
+		
 	}
 
 	// Retorna todos os participantes de um evento

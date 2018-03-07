@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "tb_evento")
 public class Evento {
@@ -16,7 +18,7 @@ public class Evento {
 	private Long id;
 
 	private String nome;
-
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date data;
 
 	private String local;
