@@ -17,6 +17,15 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private boolean ativo;
+	private byte[] foto;
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
 
 	public Long getId() {
 		return id;

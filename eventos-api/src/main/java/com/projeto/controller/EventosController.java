@@ -10,16 +10,21 @@ import org.springframework.stereotype.Controller;
 import com.projeto.model.Evento;
 import com.projeto.model.Usuario;
 import com.projeto.repository.EventoRepository;
+import com.projeto.repository.impl.EventoImpl;
 
 @Controller
 public class EventosController {
 	@Autowired
 	EventoRepository evRepo;
+	@Autowired
+	EventoImpl evImpl;
 
 	public Page<Evento> getEventos(Pageable page) {
 		return evRepo.findAll(page);
 	}
-
+	public List<Evento> getEventosSemTag() {
+		return evImpl.eventosSemTag();
+	}
 	public void saveEventp(Evento e) {
 		evRepo.save(e);
 	}

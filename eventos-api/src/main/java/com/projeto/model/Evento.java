@@ -27,6 +27,16 @@ public class Evento {
 
 	private boolean ativo;
 
+	private byte[] foto;
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 	public Long getId() {
 		return id;
 	}

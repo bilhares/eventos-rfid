@@ -1,5 +1,7 @@
 package com.projeto.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,12 +20,18 @@ public class EventoResource {
 	@Autowired
 	EventosController evControl;
 
-	//localhost:8081/api/eventos?size=1&page=0
-	
+	// localhost:8081/api/eventos?size=1&page=0
+
 	// retorna uma lista de eventos
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
 	public Page<Evento> eventos(Pageable page) {
 		return evControl.getEventos(page);
+	}
+
+	// retorna uma lista de eventos virgens
+	@RequestMapping(value = "/eventos/sem-tag", method = RequestMethod.GET)
+	public List<Evento> eventosVirgens() {
+		return evControl.getEventosSemTag();
 	}
 
 	// cadastra um novo evento
@@ -35,7 +43,7 @@ public class EventoResource {
 	// retorna uma lista de eventos relacionados com um user especifico
 	@RequestMapping(value = "/eventos/user", method = RequestMethod.POST)
 	public void eventosUsuarios(Usuario user) {
-		
+
 	}
 
 	// Retorna todos os participantes de um evento
