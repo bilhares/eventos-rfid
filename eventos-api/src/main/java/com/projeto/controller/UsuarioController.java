@@ -1,5 +1,7 @@
 package com.projeto.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,11 @@ public class UsuarioController {
 
 		if (user != null) {
 			boolean hash = new BCryptPasswordEncoder().matches(usuario.getSenha(), user.getSenha());
+			System.out.println("NOME : " + user.getNome());
 			if (hash) {
 				return user;
 			}
 		}
-		System.out.println("NOME : " + user.getNome());
 		return null;
 	}
 
@@ -47,4 +49,7 @@ public class UsuarioController {
 		return false;
 	}
 
+	public List<Usuario> listar(){
+		return usuRepo.findAll();
+	}
 }

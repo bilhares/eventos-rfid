@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,10 +35,22 @@ public class EventoResource {
 		return evControl.getEventosSemTag();
 	}
 
+	// retorna um evento
+	@RequestMapping(value = "/eventos/{id}", method = RequestMethod.GET)
+	public Evento evento(@PathVariable("id") Long id) {
+		return evControl.getById(id);
+	}
+
 	// cadastra um novo evento
 	@RequestMapping(value = "/eventos", method = RequestMethod.POST)
 	public void eventos(@RequestBody Evento evento) {
 		evControl.saveEventp(evento);
+	}
+
+	// deleta um novo evento
+	@RequestMapping(value = "/eventos/{id}", method = RequestMethod.DELETE)
+	public void deletaEvento(@PathVariable("id") Long id) {
+		evControl.delete(id);
 	}
 
 	// retorna uma lista de eventos relacionados com um user especifico

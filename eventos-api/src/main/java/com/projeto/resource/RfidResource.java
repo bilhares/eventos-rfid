@@ -26,7 +26,7 @@ public class RfidResource {
 
 	// cadastra uma tag no sistema
 	@RequestMapping(value = "/rfid", method = RequestMethod.POST)
-	public boolean cadastrarTag(@RequestBody Rfid rfid) {		
+	public boolean cadastrarTag(@RequestBody Rfid rfid) {
 		return rfControl.cadastrar(rfid);
 	}
 
@@ -43,11 +43,19 @@ public class RfidResource {
 		System.out.println(bi);
 		return rfControl.buscarUserByTag(Long.parseLong(bi.toString()));
 	}
+
 	// busca user e evento by tag
 	@RequestMapping(value = "/rfid/user-ev/{id}", method = RequestMethod.GET)
 	public RetUserEvento buscaUserEv(@PathVariable("id") String id) {
 		BigInteger bi = new BigInteger(id, 16);
 		System.out.println(bi);
 		return rfControl.buscarUserEvByTag(Long.parseLong(bi.toString()));
+	}
+
+	// busca tag disponivel no sistema
+	// busca todas as tags
+	@RequestMapping(value = "/rfid/disponivel/{id}", method = RequestMethod.GET)
+	public Rfid buscaTagDisponivel(@PathVariable("id") Long idEvento) {
+		return rfControl.buscarDisponivel(idEvento);
 	}
 }

@@ -28,9 +28,16 @@ public class EventosController {
 	public void saveEventp(Evento e) {
 		evRepo.save(e);
 	}
+	public void delete(Long id) {
+		evRepo.delete(id);
+	}
 	
 	public void eventosByUser(Pageable page, Usuario user) {
 		//evRepo.getEventosByUser(page, user.getId());
+	}
+	public Evento getById(Long id) {
+		// TODO Auto-generated method stub
+		return evRepo.findOne(id);
 	}
 
 }
