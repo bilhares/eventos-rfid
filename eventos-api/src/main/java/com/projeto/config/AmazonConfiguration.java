@@ -11,8 +11,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 @Configuration
 public class AmazonConfiguration {
 
-	private static final String ACCESS_KEY = "AKIAJTNCKDYHVIC74WSA";
-	private static final String SECRET_KEY = "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";
+	
 	private static final String REGION = "us-east-2";
 
 	@Bean
