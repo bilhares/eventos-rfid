@@ -15,7 +15,7 @@ import com.projeto.model.Evento;
 
 public class InsertEvento {
 	public static void main(String[] args) throws Exception {
-		Path p = Paths.get("C:\\Users\\PSG\\Documents\\felipe\\img_ev\\ev5.jpg");
+		Path p = Paths.get("C:\\Users\\Felipe\\Documents\\felipe\\tracktag_01.png");
 		byte[] b = Files.readAllBytes(p);
 
 		Evento e = new Evento();
@@ -32,7 +32,7 @@ public class InsertEvento {
 		e.setPreco(10987);
 		
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.postForEntity("http://localhost:8081/api/eventos", e, Object.class);
+		restTemplate.postForEntity("http://localhost:8080/api/eventos", e, Object.class);
 
 	}
 }
