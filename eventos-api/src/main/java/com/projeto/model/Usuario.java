@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -17,14 +18,25 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private boolean ativo;
-	private byte[] foto;
+	private String foto;
 
-	public byte[] getFoto() {
+	@Transient
+	private byte[] byteFoto;
+
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public byte[] getByteFoto() {
+		return byteFoto;
+	}
+
+	public void setByteFoto(byte[] byteFoto) {
+		this.byteFoto = byteFoto;
 	}
 
 	public Long getId() {

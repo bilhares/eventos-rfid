@@ -12,27 +12,23 @@ import javax.xml.ws.Response;
 import org.springframework.web.client.RestTemplate;
 
 import com.projeto.model.Evento;
+import com.projeto.model.Usuario;
 
-public class InsertEvento {
+public class InsertUser {
 	public static void main(String[] args) throws Exception {
 		Path p = Paths.get("C:\\Users\\Felipe\\Documents\\felipe\\tracktag_01.png");
 		byte[] b = Files.readAllBytes(p);
 
-		Evento e = new Evento();
+		Usuario e = new Usuario();
+
+		e.setNome("Felipe Bilhares");
+		e.setEmail("felipe");
+		e.setSenha("123");
+		e.setByteFoto(b);
 		e.setAtivo(true);
 
-		String dataString = "09/08/2025";
-		DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-
-		e.setData(data);
-		e.setBytefoto(b);
-		e.setLocal("Local fo evento 5");
-		e.setNome("Evento 05");
-		e.setPreco(10987);
-
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.postForEntity("http://localhost:8080/api/eventos", e, Object.class);
+		restTemplate.postForEntity("http://localhost:8080/api/usuario/cadastrar", e, Object.class);
 
 	}
 }

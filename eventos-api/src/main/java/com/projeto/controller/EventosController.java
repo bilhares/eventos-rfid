@@ -30,7 +30,7 @@ public class EventosController {
 	@Autowired
 	EventoImpl evImpl;
 	@Autowired
-	private AmazonS3 amazonS3;
+	ImageController imgController;
 
 	public Page<Evento> getEventos(Pageable page) {
 		return evRepo.findAll(page);
@@ -41,7 +41,8 @@ public class EventosController {
 	}
 
 	public void saveEventp(Evento e) {
-		String img = saveImageS3(e.getFoto());
+		String img = imgController.saveImageS3(e.getBytefoto());
+		e.setFoto(img);
 		System.out.println("foto " + img);
 		evRepo.save(e);
 	}
@@ -58,20 +59,4 @@ public class EventosController {
 		return evRepo.findOne(id);
 	}
 
-	private String saveImageS3(byte[] foto) {
-		// DatatypeConverter.parseBase64Binary(foto.toString());
-		String bucket = "epasstracktag";
-		InputStream stream = new ByteArrayInputStream(foto);
-		String fileName = getRandomKey()+".jpg";
-		amazonS3.putObject(
-				new PutObjectRequest(bucket, fileName, stream, null).withCannedAcl(CannedAccessControlList.PublicRead));
-
-		return "http://s3-us-east-2.amazonaws.com/" + bucket + "/" + fileName;
-	}
-
-	private String getRandomKey() {
-		UUID uuid = UUID.randomUUID();
-		String myRandom = uuid.toString();
-		return myRandom.substring(0, 20);
-	}
 }

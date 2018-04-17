@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,14 +28,25 @@ public class Evento {
 
 	private boolean ativo;
 
-	private byte[] foto;
+	private String foto;
 
-	public byte[] getFoto() {
+	@Transient
+	private byte[] bytefoto;
+
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public byte[] getBytefoto() {
+		return bytefoto;
+	}
+
+	public void setBytefoto(byte[] bytefoto) {
+		this.bytefoto = bytefoto;
 	}
 
 	public Long getId() {

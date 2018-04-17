@@ -9,8 +9,17 @@ public class RetUserEvento {
 	private String nomeUser;
 	private String nomeEvento;
 	private String emailUser;
-	private byte[] ftUser;
-	private byte[] ftEvento;
+	private String ftUser;
+	private String ftEvento;
+
+	public void setFtUser(String ftUser) {
+		this.ftUser = ftUser;
+	}
+
+	public void setFtEvento(String ftEvento) {
+		this.ftEvento = ftEvento;
+	}
+
 	private String local;
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date data;
@@ -38,22 +47,6 @@ public class RetUserEvento {
 
 	public void setNomeEvento(String nomeEvento) {
 		this.nomeEvento = nomeEvento;
-	}
-
-	public byte[] getFtUser() {
-		return ftUser;
-	}
-
-	public void setFtUser(byte[] ftUser) {
-		this.ftUser = ftUser;
-	}
-
-	public byte[] getFtEvento() {
-		return ftEvento;
-	}
-
-	public void setFtEvento(byte[] ftEvento) {
-		this.ftEvento = ftEvento;
 	}
 
 	public String getLocal() {
